@@ -71,5 +71,15 @@ namespace HPScreen.Admin
         {
             return ((max - min) * (float)this._random.NextDouble()) + min;
         }
+        public float NextGaussian()
+        {
+            // Box-Muller transform
+            float u1 = (float)_random.NextDouble(); // Uniform(0,1]
+            float u2 = (float)_random.NextDouble(); // Uniform(0,1]
+                                                    // Avoid log(0) by ensuring u1 is not 0
+            if (u1 == 0) u1 = float.Epsilon;
+            float z = MathF.Sqrt(-2.0f * MathF.Log(u1)) * MathF.Cos(2.0f * MathF.PI * u2);
+            return z;
+        }
     }
 }

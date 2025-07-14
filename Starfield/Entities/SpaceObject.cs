@@ -1,5 +1,6 @@
 ﻿using HPScreen.Admin;
 using Microsoft.Xna.Framework.Graphics;
+using Starfield.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,6 @@ namespace HPScreen.Entities
             Xpos = 0;
             Ypos = 0;
             Scale = 1;
-            
             Acceleration = Ran.Current.Next(1.01f, 1.025f);
             ScaleIncrease = 0.015f * Acceleration;
         }
@@ -34,9 +34,9 @@ namespace HPScreen.Entities
             this.Xpos = x;
             this.Ypos = y;
         }
-        public void Update()
+        public void Update(float speedMultiplier)
         {
-            Scale += ScaleIncrease;
+            Scale += ScaleIncrease * speedMultiplier; // Scale growth depends on ship speed
             Xspeed *= Acceleration;
             Yspeed *= Acceleration;
 

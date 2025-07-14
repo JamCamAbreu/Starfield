@@ -22,8 +22,7 @@ namespace HPScreen
         private MouseState _previousMouseState;
         private int loadFrames = 0;
         private const int LOAD_FRAMES_THRESH = 10;
-        StarGenerator generator = new StarGenerator();
-        OtherGenerator otherGenerator = new OtherGenerator();
+        StarGenerator StarGenerator;
 
         protected bool RunSetup { get; set; }
         public ScreenSaver()
@@ -75,8 +74,8 @@ namespace HPScreen
             CheckInput(); // Used to exit game when input detected (aka screensaver logic)
             if (RunSetup) { Setup(); }
 
-            generator.Update();
-            otherGenerator.Update();
+            StarGenerator.Update();
+            //otherGenerator.Update();
 
             base.Update(gameTime);
         }
@@ -85,8 +84,8 @@ namespace HPScreen
             // Color that the screen is wiped with each frame before drawing anything else:
             GraphicsDevice.Clear(Color.Black);
 
-            generator.Draw();
-            otherGenerator.Draw();
+            StarGenerator.Draw();
+            //otherGenerator.Draw();
 
             base.Draw(gameTime);
         }
@@ -94,7 +93,7 @@ namespace HPScreen
         protected void Setup()
         {
             // Any logic that needs to run at the beginning of the game only:
-
+            StarGenerator = new StarGenerator();
             RunSetup = false;
         }
 
