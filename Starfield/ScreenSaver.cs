@@ -62,6 +62,8 @@ namespace HPScreen
             Graphics.Current.SpritesByName.Add("bug3", Content.Load<Texture2D>("Sprites/bug3"));
             Graphics.Current.SpritesByName.Add("laser", Content.Load<Texture2D>("Sprites/laser"));
             Graphics.Current.SpritesByName.Add("perr", Content.Load<Texture2D>("Sprites/Perr"));
+            Graphics.Current.SpritesByName.Add("asteroid", Content.Load<Texture2D>("Sprites/asteroid"));
+            Graphics.Current.SpritesByName.Add("spacecockpit", Content.Load<Texture2D>("Sprites/spacecockpit"));
 
             Graphics.Current.Fonts = new Dictionary<string, SpriteFont>();
             Graphics.Current.Fonts.Add("arial-48", Content.Load<SpriteFont>($"Fonts/arial_48"));
@@ -83,9 +85,17 @@ namespace HPScreen
         {
             // Color that the screen is wiped with each frame before drawing anything else:
             GraphicsDevice.Clear(Color.Black);
-
             StarGenerator.Draw();
-            //otherGenerator.Draw();
+
+            // Cockpit
+            Graphics.Current.SpriteB.Begin();
+            Rectangle rect = new Rectangle(0, 0, Graphics.Current.ScreenWidth, Graphics.Current.ScreenHeight);
+            Graphics.Current.SpriteB.Draw(
+                Graphics.Current.SpritesByName["spacecockpit"],
+                rect,
+                Color.Gray
+            );
+            Graphics.Current.SpriteB.End();
 
             base.Draw(gameTime);
         }

@@ -1,4 +1,5 @@
 ﻿using HPScreen.Admin;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Starfield.Entities;
 using System;
@@ -19,6 +20,11 @@ namespace HPScreen.Entities
             Scale = 1;
             Acceleration = Ran.Current.Next(1.01f, 1.025f);
             ScaleIncrease = 0.015f * Acceleration;
+            SourceSpriteRect = null;
+            SourceSpriteCol = 0;
+            SourceSpriteRow = 0;
+            AnimationSpeed = 0;
+            AnimationTimer = 0;
         }
         public float Xpos { get; set; }
         public float Ypos { get; set; }
@@ -29,6 +35,12 @@ namespace HPScreen.Entities
         public float AccelerationMax { get; set; }
         public float ScaleIncrease { get; set; }
         public Texture2D Sprite { get; set; }
+        public Color DrawColor { get; set; }
+        public int AnimationSpeed { get; set; }
+        public int AnimationTimer { get; set; }
+        public Rectangle? SourceSpriteRect { get; set; }
+        public int SourceSpriteRow { get; set; }
+        public int SourceSpriteCol { get; set; }
         public void SetAbsolutePosition(float x, float y)
         {
             this.Xpos = x;
