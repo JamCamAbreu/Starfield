@@ -198,6 +198,9 @@ namespace Starfield.Entities
                 Graphics.Current.DrawString("Asteroid Field!", new Vector2(Graphics.Current.ScreenMidX, 200), new Font(Color.DarkRed, Font.Type.arial, Font.Size.SIZE_S), true, true, false);
             }
 
+            //Graphics.Current.DrawString($"Stars: {Stars.Count()}", new Vector2(0, 0), new Font(Color.White, Font.Type.arial, Font.Size.SIZE_S), false, false, false);
+            //Graphics.Current.DrawString($"Asteroids: {Asteroids.Count()}", new Vector2(0, 60), new Font(Color.White, Font.Type.arial, Font.Size.SIZE_S), false, false, false);
+
             Graphics.Current.SpriteB.End();
         }
 
@@ -219,22 +222,23 @@ namespace Starfield.Entities
         }
         protected void CleanUpStars()
         {
-            List<SpaceObject> deleteStars = new List<SpaceObject>();
-            foreach (var star in Stars.Union(Asteroids))
+            List<SpaceObject> deleteEntities = new List<SpaceObject>();
+            foreach (var entity in Stars.Union(Asteroids))
             {
                 if (
-                    star.Xpos > Graphics.Current.ScreenWidth ||
-                    star.Xpos < 0 ||
-                    star.Ypos > Graphics.Current.ScreenHeight ||
-                    star.Ypos < 0
+                    entity.Xpos > Graphics.Current.ScreenWidth ||
+                    entity.Xpos < 0 ||
+                    entity.Ypos > Graphics.Current.ScreenHeight ||
+                    entity.Ypos < 0
                     )
                 {
-                    deleteStars.Add(star);
+                    deleteEntities.Add(entity);
                 }
             }
-            foreach (var star in deleteStars)
+            foreach (var entity in deleteEntities)
             {
-                Stars.Remove(star);
+                Stars.Remove(entity);
+                Asteroids.Remove(entity);
             }
         }
         #endregion
